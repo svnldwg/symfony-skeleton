@@ -70,7 +70,7 @@ phpstan: ##@development run phpstan
 .PHONY: phpstan
 
 php-cs-fixer: ##@development run php-cs-fixer
-	$(CLI) ./vendor/bin/php-cs-fixer fix --config=dev/csfixer.php_cs
+	../vendor/bin/php-cs-fixer fix --config=../dev/csfixer.php_cs
 .PHONY: php-cs-fixer
 
 phpunit: ##@development run phpunit
