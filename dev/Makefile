@@ -21,9 +21,8 @@ export ENVIRONMENT=dev
 #DOCKER
 DOCKER = docker
 DOCKER_COMPOSE = docker-compose -f ../docker/docker-compose.yml
-CLI = $(DOCKER_COMPOSE) exec -T ${PROJECT_NAME}
-CLI_D = $(DOCKER_COMPOSE) exec -T -d ${PROJECT_NAME}
-CLI_COMPOSER = $(DOCKER_COMPOSE) exec -T ${PROJECT_NAME} php -d memory_limit=-1 /usr/bin/composer
+CLI = $(DOCKER_COMPOSE) exec -T php
+CLI_COMPOSER = $(DOCKER_COMPOSE) exec -T php php -d memory_limit=-1 /usr/bin/composer
 CONSOLE = $(CLI) ./vendor/bin/console
 
 start: ##@development start project
@@ -51,7 +50,7 @@ logs: ##@development show server logs
 .PHONY: logs
 
 cli: ##@development get shell
-	$(DOCKER_COMPOSE) exec ${PROJECT_NAME} $(SHELL)
+	$(DOCKER_COMPOSE) exec php $(SHELL)
 .PHONY: cli
 
 composer-install: ##@development run composer install
@@ -68,7 +67,7 @@ composer-dump-autoload: ##@development run composer dump-autoload
 
 setup: start ##@development configure development environment
 	grep -q -F "${PROJECT_IP} ${PROJECT_DOMAIN}" /etc/hosts || sudo sh -c "echo '${PROJECT_IP} ${PROJECT_DOMAIN}' >> /etc/hosts"
-	$(DOCKER_COMPOSE) restart ${PROJECT_NAME}
+	$(DOCKER_COMPOSE) restart php
 .PHONY: setup
 
 phpstan: ##@development run phpstan
