@@ -9,3 +9,9 @@ Browser to directory `dev`
 ## View in browser
 
 http://symfony-skeleton.dev.local:8100/
+
+## TODO
+
+- Database Integration (Doctrine)
+- Frontend Framework
+- Assets (JS/CSS)
