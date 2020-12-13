@@ -2,7 +2,13 @@
 export PROJECT_IP = 127.0.0.1
 export PROJECT_DOMAIN = symfony-skeleton.dev.local
 export PROJECT_NAME = symfony-skeleton
+export PROJECT_NAME_UNDERSCORE = $(subst  -,_,${PROJECT_NAME})
 export SHELL = bash
+
+export POSTGRES_HOST = ${PROJECT_NAME}-database
+export POSTGRES_PASSWORD = pass
+export POSTGRES_USER = ${PROJECT_NAME_UNDERSCORE}
+export POSTGRES_DB = ${PROJECT_NAME_UNDERSCORE}
 
 #xdebug
 export HOST_PORT = 9000
