@@ -75,7 +75,7 @@ phpstan: ##@development run phpstan
 .PHONY: phpstan
 
 php-cs-fixer: ##@development run php-cs-fixer
-	../vendor/bin/php-cs-fixer fix --config=../dev/csfixer.php_cs
+	$(CLI) ./vendor/bin/php-cs-fixer fix --config=dev/csfixer.php_cs
 .PHONY: php-cs-fixer
 
 phpunit: ##@development run phpunit
@@ -92,3 +92,15 @@ symfony-autowiring:
 symfony-container:
 	$(CLI) php bin/console debug:container
 .PHONY: symfony-container
+
+make-entity:
+	$(CLI) php bin/console make:entity
+.PHONY: make-entity
+
+make-migration:
+	$(CLI) php bin/console make:migration
+.PHONY: make-migration
+
+doctrine-migrate:
+	$(CLI) php bin/console doctrine:migrations:migrate
+.PHONY: doctrine-migrate
