@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\NumberGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,11 +10,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class LuckyController extends AbstractController
 {
     /**
-     * @Route("/lucky")
+     * @Route("/lucky/{max}")
      */
-    public function number(): Response
+    public function number(int $max, NumberGenerator $numberGenerator): Response
     {
-        $number = random_int(0, 100);
+        $number = $numberGenerator->random(0, $max);
 
         return $this->render('lucky/number.html.twig', [
             'number' => $number,

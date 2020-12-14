@@ -84,3 +84,7 @@ phpunit: ##@development run phpunit
 
 codecheck: php-cs-fixer phpstan phpunit
 .PHONY: codecheck
+
+symfony-autowiring:
+	$(CLI) php bin/console debug:autowiring
+.PHONY: symfony-autowiring
