@@ -12,6 +12,8 @@ http://symfony-skeleton.dev.local:8100/
 
 ## TODO
 
-- Database Integration (Doctrine)
 - Frontend Framework
 - Assets (JS/CSS)
+- Doctrine Read from DB
+- Display Errors
+- Xdebug
