@@ -88,3 +88,7 @@ codecheck: php-cs-fixer phpstan phpunit
 symfony-autowiring:
 	$(CLI) php bin/console debug:autowiring
 .PHONY: symfony-autowiring
+
+symfony-container:
+	$(CLI) php bin/console debug:container
+.PHONY: symfony-container
