@@ -9,7 +9,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ARG WITH_XDEBUG=false
+ARG WITH_XDEBUG=true
 
 RUN if [ $WITH_XDEBUG = "true" ] ; then \
         pecl install xdebug; \

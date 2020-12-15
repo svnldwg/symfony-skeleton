@@ -15,5 +15,5 @@ http://symfony-skeleton.dev.local:8100/
 - Frontend Framework
 - Assets (JS/CSS)
 - Doctrine Read from DB
-- Display Errors
 - Xdebug
+- REST API
