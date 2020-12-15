@@ -19,6 +19,11 @@ class NumberStoreRepository extends ServiceEntityRepository
         parent::__construct($registry, NumberStore::class);
     }
 
+    public function findLatest(int $limit): array
+    {
+        return $this->findBy([], ['updatedAt' => 'DESC'], $limit);
+    }
+
     // /**
     //  * @return NumberStore[] Returns an array of NumberStore objects
     //  */

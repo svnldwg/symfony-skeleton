@@ -36,13 +36,13 @@ class LuckyController extends AbstractController
     }
 
     /**
-     * @Route("/lucky/history")
+     * @Route("/lucky/latest/{limit<\d+>?5}")
      */
-    public function numberHistory(NumberStoreRepository $numberStoreRepository): Response
+    public function latestNumbers(int $limit, NumberStoreRepository $numberStoreRepository): Response
     {
-        $numbers = $numberStoreRepository->findAll();
+        $numbers = $numberStoreRepository->findLatest($limit);
 
-        return $this->render('lucky/history.html.twig', [
+        return $this->render('lucky/latest.html.twig', [
             'numbers' => $numbers,
         ]);
     }
