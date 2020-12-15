@@ -52,4 +52,12 @@ class NumberStoreRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function save(int $number): void
+    {
+        $newNumberStore = new NumberStore($number);
+
+        $this->_em->persist($newNumberStore);
+        $this->_em->flush();
+    }
 }
