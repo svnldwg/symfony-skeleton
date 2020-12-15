@@ -35,4 +35,19 @@ class RestController
 
         return new JsonResponse(['status' => 'Number persisted!'], Response::HTTP_CREATED);
     }
+
+    /**
+     * @Route("/rest/latest/{limit<\d+>?10}", name="latest_numbers", methods={"GET"})
+     */
+    public function latest(int $limit): JsonResponse
+    {
+        $numbers = $this->numberStoreRepository->findLatest($limit);
+
+        $data = [
+            'limit' => $limit,
+            'numbers' => $numbers,
+        ];
+
+        return new JsonResponse($data, Response::HTTP_OK);
+    }
 }
