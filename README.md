@@ -8,6 +8,7 @@ Infrastructure:
 * Symfony 5.2
 * Twig
 * Doctrine ORM
+* Nginx
 
 Dev Tools:
 * phpstan
