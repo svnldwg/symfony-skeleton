@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass=NumberStoreRepository::class)
  * @ORM\HasLifecycleCallbacks
  */
-class NumberStore implements \JsonSerializable
+class NumberStore
 {
     /**
      * @ORM\Id
@@ -52,13 +52,5 @@ class NumberStore implements \JsonSerializable
         $this->updatedAt = new \DateTimeImmutable();
 
         return $this;
-    }
-
-    public function jsonSerialize()
-    {
-        return [
-            'number' => $this->number,
-            'updatedAt' => $this->updatedAt->format(\DATE_ATOM),
-        ];
     }
 }

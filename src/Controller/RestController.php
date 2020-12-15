@@ -8,14 +8,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class RestController
 {
     private NumberStoreRepository $numberStoreRepository;
+    private SerializerInterface $serializer;
 
-    public function __construct(NumberStoreRepository $numberStoreRepository)
-    {
+    public function __construct(
+        NumberStoreRepository $numberStoreRepository,
+        SerializerInterface $serializer
+    ) {
         $this->numberStoreRepository = $numberStoreRepository;
+        $this->serializer = $serializer;
     }
 
     /**
@@ -44,10 +49,12 @@ class RestController
         $numbers = $this->numberStoreRepository->findLatest($limit);
 
         $data = [
-            'limit' => $limit,
+            'limit'   => $limit,
             'numbers' => $numbers,
         ];
 
-        return new JsonResponse($data, Response::HTTP_OK);
+        $jsonData = $this->serializer->serialize($data, 'json');
+
+        return new JsonResponse($jsonData, Response::HTTP_OK, [], true);
     }
 }
