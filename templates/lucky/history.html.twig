@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Last lucky numbers</h1>
+    <table>
+    {% for number in numbers %}
+        <tr>
+            <td>{{ number.number }}</td>
+            <td>{{ number.updatedAt.format('Y-m-d H:i:s') }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

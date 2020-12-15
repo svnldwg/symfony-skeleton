@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\NumberStore;
+use App\Repository\NumberStoreRepository;
 use App\Service\NumberGenerator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +20,7 @@ class LuckyController extends AbstractController
     }
 
     /**
-     * @Route("/lucky/{max}")
+     * @Route("/lucky/{max<\d+>}")
      */
     public function number(int $max, NumberGenerator $numberGenerator): Response
     {
@@ -31,6 +32,18 @@ class LuckyController extends AbstractController
 
         return $this->render('lucky/number.html.twig', [
             'number' => $number,
+        ]);
+    }
+
+    /**
+     * @Route("/lucky/history")
+     */
+    public function numberHistory(NumberStoreRepository $numberStoreRepository): Response
+    {
+        $numbers = $numberStoreRepository->findAll();
+
+        return $this->render('lucky/history.html.twig', [
+            'numbers' => $numbers,
         ]);
     }
 }
