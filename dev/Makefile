@@ -27,6 +27,7 @@ CONSOLE = $(CLI) ./vendor/bin/console
 
 start: ##@development start project
 	$(DOCKER_COMPOSE) up -d
+	@$(MAKE) display-urls
 .PHONY: start
 
 stop: ##@development stop project
@@ -68,7 +69,15 @@ composer-dump-autoload: ##@development run composer dump-autoload
 setup: start ##@development configure development environment
 	grep -q -F "${PROJECT_IP} ${PROJECT_DOMAIN}" /etc/hosts || sudo sh -c "echo '${PROJECT_IP} ${PROJECT_DOMAIN}' >> /etc/hosts"
 	$(DOCKER_COMPOSE) restart php
+	@$(MAKE) display-urls
 .PHONY: setup
+
+display-urls:
+	@echo
+	@echo "Website can be accessed at:"
+	@echo "http://symfony-skeleton.dev.local:8100/"
+	@echo "http://symfony-skeleton.dev.local:8100/lucky/100"
+	@echo "http://symfony-skeleton.dev.local:8100/lucky/latest"
 
 phpstan: ##@development run phpstan
 	$(CLI) ./vendor/bin/phpstan analyze -c dev/phpstan.neon
