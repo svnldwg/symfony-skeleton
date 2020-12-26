@@ -66,7 +66,7 @@ composer-dump-autoload: ##@development run composer dump-autoload
 	$(CLI_COMPOSER) dump-autoload -a
 .PHONY: composer-dump-autoload
 
-setup: start ##@development configure development environment
+setup: start doctrine-migrate ##@development configure development environment
 	grep -q -F "${PROJECT_IP} ${PROJECT_DOMAIN}" /etc/hosts || sudo sh -c "echo '${PROJECT_IP} ${PROJECT_DOMAIN}' >> /etc/hosts"
 	$(DOCKER_COMPOSE) restart php
 	@$(MAKE) display-urls
@@ -111,5 +111,5 @@ make-migration:
 .PHONY: make-migration
 
 doctrine-migrate:
-	$(CLI) php bin/console doctrine:migrations:migrate
+	$(CLI) php bin/console doctrine:migrations:migrate --no-interaction
 .PHONY: doctrine-migrate
