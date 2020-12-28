@@ -26,9 +26,11 @@ Browser to directory `dev`
 
 http://symfony-skeleton.dev.local:8100/
 
+## Setup Xdebug 3 in phpstorm
+![](readme_xdebug1.png)
+
 ## TODO
 
 - Frontend Framework
 - Assets (JS/CSS)
-- Xdebug
 - REST API
